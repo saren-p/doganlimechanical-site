@@ -12,6 +12,15 @@ body {
   margin: 0;
   background: #f3f1ec;
   color: #222625;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 120px;
 }
 
 body::before {
@@ -177,6 +186,20 @@ body::before {
   border-radius: 1rem;
   background: #e8e6df;
   padding: 1.2rem;
+}
+
+.contact-input {
+  width: 100%;
+  border: 1px solid rgba(232, 230, 223, 0.3);
+  border-radius: 0.75rem;
+  background: rgba(248, 245, 236, 0.06);
+  color: #f8f5ec;
+  padding: 0.75rem 0.9rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.contact-input::placeholder {
+  color: rgba(248, 245, 236, 0.65);
 }
 
 .pulse-dot {

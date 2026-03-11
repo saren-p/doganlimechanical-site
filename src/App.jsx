@@ -153,8 +153,14 @@ export default function App() {
         <nav className="nav-shell mx-auto flex max-w-[1400px] items-center justify-between rounded-2xl border border-white/20 px-5 py-3 text-sm uppercase tracking-[0.14em] text-white backdrop-blur-sm transition-all duration-500">
           <p className="font-mono text-xs">Doganli Mechanical</p>
           <div className="hidden gap-6 md:flex">
-            {['Services', 'Industries', 'Property Managers', 'Projects', 'About', 'Contact'].map((item) => (
-              <a key={item} href="#" className="nav-link">{item}</a>
+            {[
+              ['About', '#about'],
+              ['Services', '#services'],
+              ['Industries', '#industries'],
+              ['Projects', '#projects'],
+              ['Contact', '#contact']
+            ].map(([item, href]) => (
+              <a key={item} href={href} className="nav-link">{item}</a>
             ))}
           </div>
           <button className="bronze-btn">Emergency</button>
@@ -180,7 +186,31 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section-shell bg-[#F3F1EC]">
+      <section id="about" className="section-shell bg-[#1C2E27] text-[#E8E6DF]">
+        <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-[1.15fr_1fr]">
+          <div>
+            <h2 className="section-title text-[#F8F5EC]">HVAC Management Across Your Entire Portfolio</h2>
+            <p className="mt-5 max-w-xl font-outfit text-lg text-[#F8F5EC]/90">Centralized service. Scheduled maintenance. Multi-site response.</p>
+            <ul className="mt-8 space-y-3 font-outfit text-[#F8F5EC]">
+              {['Multi-property maintenance scheduling', 'Consolidated service billing', 'Dedicated account management', 'Rapid cross-site response', 'Asset lifecycle tracking'].map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-2xl border border-[#A56A3F]/35 bg-[#23352e] p-6">
+            <h3 className="font-sora text-2xl text-[#F8F5EC]">Operations Directory</h3>
+            <p className="mt-4 font-outfit text-[#F8F5EC]/90">We focus strictly on high-capacity environments. If it powers a house, we don't touch it. If it powers a high-rise, it's our specialty.</p>
+            <div className="relative mt-6 grid grid-cols-2 gap-4 overflow-hidden rounded-xl border border-[#A56A3F]/30 p-4">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <div key={idx} className="h-20 rounded-lg border border-[#E8E6DF]/20 bg-[#1C2E27]" />
+              ))}
+              <div className="scan-line absolute bottom-0 left-[-40%] top-0 w-1/3 bg-gradient-to-r from-transparent via-[#A56A3F]/45 to-transparent" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" className="section-shell bg-[#F3F1EC]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="section-title">Engineered Capability Panels</h2>
           <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -200,30 +230,10 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section-shell bg-[#222625] text-[#E8E6DF]">
-        <div className="mx-auto grid max-w-[1400px] gap-10 lg:grid-cols-[1.2fr_1fr]">
-          <div>
-            <h2 className="section-title text-[#E8E6DF]">HVAC Management Across Your Entire Portfolio</h2>
-            <p className="mt-5 max-w-xl font-outfit text-lg text-[#E8E6DF]/80">Centralized service. Scheduled maintenance. Multi-site response.</p>
-            <ul className="mt-8 space-y-3 font-outfit text-[#E8E6DF]/90">
-              {['Multi-property maintenance scheduling', 'Consolidated service billing', 'Dedicated account management', 'Rapid cross-site response', 'Asset lifecycle tracking'].map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
-            </ul>
-            <button className="bronze-btn mt-8">Partner With Us</button>
-          </div>
-          <div className="relative grid grid-cols-2 gap-4 overflow-hidden rounded-2xl border border-[#A56A3F]/30 p-5">
-            {Array.from({ length: 6 }).map((_, idx) => (
-              <div key={idx} className="h-24 rounded-lg border border-[#E8E6DF]/20 bg-[#1C2E27]" />
-            ))}
-            <div className="scan-line absolute bottom-0 left-[-40%] top-0 w-1/3 bg-gradient-to-r from-transparent via-[#A56A3F]/45 to-transparent" />
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell bg-[#F3F1EC]">
+      <section id="industries" className="section-shell bg-[#F3F1EC]">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="section-title">Industries Served</h2>
+          <p className="mt-4 max-w-3xl font-outfit text-lg text-[#222625]/80">Operations Directory. We focus strictly on high-capacity environments. If it powers a house, we don't touch it. If it powers a high-rise, it's our specialty.</p>
           <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
             {industries.map((industry) => (
               <article key={industry.name} className="industry-tile" style={{ backgroundImage: `url(${industry.image})` }}>
@@ -234,7 +244,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section-shell bg-[#E8E6DF]">
+      <section id="projects" className="section-shell bg-[#E8E6DF]">
         <div className="mx-auto max-w-[1100px]">
           <h2 className="section-title">Projects / Case Studies</h2>
           <div className="mt-10 space-y-8">
@@ -260,10 +270,10 @@ export default function App() {
 
       <section className="section-shell bg-[#222625] text-[#E8E6DF]">
         <div className="mx-auto max-w-[1400px]">
-          <h2 className="section-title text-[#E8E6DF]">Equipped for Large-Scale Operations</h2>
+          <h2 className="section-title text-[#F8F5EC]">Equipped for Large-Scale Operations</h2>
           <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-            <img className="h-full min-h-[320px] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1565636825494-2f1f9f4fdbf3?auto=format&fit=crop&w=1500&q=80" alt="Fleet vehicles and rooftop installation operations" />
-            <ul className="space-y-4 rounded-2xl border border-[#A56A3F]/35 bg-[#1C2E27] p-6 font-outfit">
+            <img className="h-full min-h-[320px] w-full rounded-2xl object-cover" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1500&q=80" alt="Fleet vehicles and rooftop installation operations" />
+            <ul className="space-y-4 rounded-2xl border border-[#A56A3F]/35 bg-[#15241f] p-6 font-outfit text-lg text-[#F8F5EC]">
               <li>• Province-Wide Coverage</li>
               <li>• Certified Technicians</li>
               <li>• Fully Licensed & Insured</li>
@@ -292,13 +302,30 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section-shell bg-[#1C2E27] text-[#E8E6DF] text-center">
+      <section id="contact" className="section-shell bg-[#1C2E27] text-[#E8E6DF]">
+        <div className="mx-auto grid max-w-[1000px] gap-8 rounded-2xl border border-[#A56A3F]/35 bg-[#15241f] p-8 lg:grid-cols-2">
+          <div>
+            <h2 className="section-title text-[#F8F5EC]">Contact</h2>
+            <p className="mt-4 font-outfit text-[#F8F5EC]/80">Tell us about your site, urgency, and service needs. Our commercial HVAC team will respond quickly.</p>
+          </div>
+          <form className="grid gap-4">
+            <input className="contact-input" type="text" placeholder="Name" />
+            <input className="contact-input" type="email" placeholder="Email" />
+            <input className="contact-input" type="text" placeholder="Company" />
+            <input className="contact-input" type="tel" placeholder="Phone Number" />
+            <textarea className="contact-input min-h-28" placeholder="Message" />
+            <button type="button" className="bronze-btn w-fit">Send Request</button>
+          </form>
+        </div>
+      </section>
+
+      <section className="section-shell bg-[#1C2E27] pt-0 text-[#E8E6DF] text-center">
         <h2 className="mx-auto max-w-4xl font-sora text-4xl tracking-tight md:text-6xl">Downtime Costs More Than Maintenance</h2>
         <p className="mx-auto mt-5 max-w-2xl font-outfit text-[#E8E6DF]/80">Reduce emergency failures through preventative maintenance planning.</p>
         <button className="bronze-btn mx-auto mt-8">Schedule a Maintenance Assessment</button>
       </section>
 
-      <footer className="rounded-t-[2rem] bg-[#222625] px-5 py-12 text-[#E8E6DF] md:px-10">
+      <footer className="bg-[#222625] px-5 py-12 text-[#E8E6DF] md:px-10">
         <div className="mx-auto grid max-w-[1400px] gap-8 md:grid-cols-4">
           <div>
             <p className="font-sora text-xl">Doganli Mechanical</p>

@@ -177,49 +177,16 @@
       inset: 0;
       z-index: 0;
     }
-    /* Ken Burns animation — swap this div for <video> when .mp4 is ready */
-    .hero-canvas {
-      width: 100%;
-      height: 100%;
-      background:
-        linear-gradient(160deg, #0a1510 0%, #1C2E27 40%, #0e1a14 70%, #050d09 100%);
-      animation: kenburns 20s ease-in-out infinite alternate;
-      transform-origin: center center;
-      position: relative;
-    }
-    /* Industrial grid texture overlay */
-    .hero-canvas::before {
-      content: '';
+    .hero-video {
       position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.02) 59px, rgba(255,255,255,0.02) 60px),
-        repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.02) 59px, rgba(255,255,255,0.02) 60px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
-    /* Silhouette of rooftop HVAC equipment */
-    .hero-canvas::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 35%;
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-    }
-    @keyframes kenburns {
-      0%   { transform: scale(1.00) translate(0%, 0%); }
-      33%  { transform: scale(1.05) translate(-1%, 0.8%); }
-      66%  { transform: scale(1.04) translate(0.8%, -0.6%); }
-      100% { transform: scale(1.07) translate(-0.5%, 0.4%); }
-    }
-    /* TODO: Replace .hero-canvas with:
-       <video autoplay muted loop playsinline poster="./assets/hero-bg.jpg" class="hero-video">
-         <source src="./assets/hero.mp4" type="video/mp4">
-       </video>
-       .hero-video { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-                     min-width:100%; min-height:100%; object-fit:cover; }
-    */
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -1165,7 +1132,9 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg">
-      <div class="hero-canvas" id="heroBg"></div>
+      <video autoplay muted loop playsinline poster="./assets/hero-bg.jpg" class="hero-video" id="heroBg">
+        <source src="./assets/hero.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -1633,23 +1602,20 @@
   </footer>
 
   <script>
-    // Hero pause/play toggle (for when video is added)
+    // Hero pause/play toggle
     let heroPaused = false;
-    const heroBg = document.getElementById('heroBg');
     const heroPauseBtn = document.getElementById('heroPause');
 
     function toggleHero() {
       heroPaused = !heroPaused;
+      const video = document.getElementById('heroBg');
       if (heroPaused) {
-        heroBg.style.animationPlayState = 'paused';
+        video.pause();
         heroPauseBtn.textContent = '► Play';
       } else {
-        heroBg.style.animationPlayState = 'running';
+        video.play();
         heroPauseBtn.textContent = '❚❚ Pause';
       }
-      // When video is added, replace above with:
-      // const video = document.querySelector('.hero-video');
-      // heroPaused ? video.pause() : video.play();
     }
 
     // Tab switching
